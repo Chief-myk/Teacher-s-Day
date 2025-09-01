@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { 
-  Heart, Star, Sparkles, Gift, BookOpen, Award, 
+import {
+  Heart, Star, Sparkles, Gift, BookOpen, Award,
   Quote, Users, Lightbulb, BookMarked, School, GraduationCap,
   Apple, Trophy, Palette, Music
 } from 'lucide-react';
@@ -19,13 +19,13 @@ const Confetti = ({ isActive }) => {
             const size = Math.random() * 16 + 6;
             const shapes = ['circle', 'square', 'star', 'heart'];
             const shape = shapes[Math.floor(Math.random() * shapes.length)];
-            
+
             return (
               <motion.div
                 key={particle}
                 className={`absolute ${shape === 'circle' ? 'rounded-full' : shape === 'square' ? 'rounded-sm' : 'rounded-full'}`}
                 style={{
-                  background: shape === 'star' ? 
+                  background: shape === 'star' ?
                     `linear-gradient(45deg, hsl(${randomHue}, 90%, 60%), hsl(${randomHue + 60}, 90%, 70%))` :
                     `hsl(${randomHue}, 90%, 60%)`,
                   left: `${Math.random() * 100}%`,
@@ -34,9 +34,9 @@ const Confetti = ({ isActive }) => {
                   height: `${size}px`,
                   boxShadow: `0 0 ${size}px rgba(255, 255, 255, 0.3)`,
                 }}
-                initial={{ 
-                  y: -20, 
-                  rotate: 0, 
+                initial={{
+                  y: -20,
+                  rotate: 0,
                   opacity: 1,
                   x: Math.random() * 40 - 20,
                   scale: 0
@@ -74,7 +74,7 @@ const FloatingElements = () => {
         const IconComponent = iconComponents[Math.floor(Math.random() * iconComponents.length)];
         const color = colors[Math.floor(Math.random() * colors.length)];
         const size = Math.random() * 16 + 20;
-        
+
         return (
           <motion.div
             key={element}
@@ -97,8 +97,8 @@ const FloatingElements = () => {
               delay: Math.random() * 10,
             }}
           >
-            <IconComponent 
-              fill={Math.random() > 0.7 ? "currentColor" : "none"} 
+            <IconComponent
+              fill={Math.random() > 0.7 ? "currentColor" : "none"}
               strokeWidth={1.5}
             />
           </motion.div>
@@ -117,7 +117,7 @@ const Rope = ({ onPull, isPulled, isVisible }) => {
   const handleDrag = (event, info) => {
     const newLength = Math.max(0, Math.min(info.point.y, 250));
     setRopeLength(newLength);
-    
+
     if (newLength > 180 && !hasBeenPulled) {
       setHasBeenPulled(true);
       onPull();
@@ -127,7 +127,7 @@ const Rope = ({ onPull, isPulled, isVisible }) => {
   if (!isVisible) return null;
 
   return (
-    <motion.div 
+    <motion.div
       className="absolute top-0 left-1/2 transform -translate-x-1/2 z-40"
       exit={{ opacity: 0, y: -100, scale: 0.5 }}
       transition={{ duration: 0.8 }}
@@ -146,56 +146,56 @@ const Rope = ({ onPull, isPulled, isVisible }) => {
         {/* Enhanced Bell */}
         <motion.div
           className="relative w-12 h-12 bg-gradient-to-br from-yellow-300 via-yellow-400 to-yellow-600 rounded-full mb-2 flex items-center justify-center shadow-2xl"
-          animate={{ 
+          animate={{
             scale: isDragging ? 1.3 : [1, 1.1, 1],
             rotateZ: isDragging ? [0, -8, 8, 0] : [0, -2, 2, 0],
-            boxShadow: isDragging ? 
-              "0 20px 40px rgba(255, 215, 0, 0.6)" : 
+            boxShadow: isDragging ?
+              "0 20px 40px rgba(255, 215, 0, 0.6)" :
               "0 10px 20px rgba(255, 215, 0, 0.4)"
           }}
-          transition={{ 
-            duration: isDragging ? 0.2 : 3, 
-            repeat: isDragging ? Infinity : Infinity 
+          transition={{
+            duration: isDragging ? 0.2 : 3,
+            repeat: isDragging ? Infinity : Infinity
           }}
         >
-          <motion.div 
+          <motion.div
             className="w-2 h-6 bg-gradient-to-b from-yellow-700 to-yellow-800 rounded-full"
             animate={{ scaleY: isDragging ? 0.8 : 1 }}
           />
           {/* Bell shine effect */}
           <div className="absolute inset-1 bg-gradient-to-br from-white/30 to-transparent rounded-full"></div>
         </motion.div>
-        
+
         {/* Enhanced Rope with texture */}
         <motion.div
           className="relative bg-gradient-to-b from-amber-300 via-amber-500 to-amber-700 shadow-inner"
-          style={{ 
+          style={{
             width: isDragging ? '10px' : '8px',
             height: `${180 + ropeLength}px`,
             borderRadius: '4px'
           }}
-          animate={{ 
+          animate={{
             scaleX: isDragging ? 1.3 : 1,
-            boxShadow: isDragging ? 
-              "inset 0 0 20px rgba(120, 53, 15, 0.8)" : 
+            boxShadow: isDragging ?
+              "inset 0 0 20px rgba(120, 53, 15, 0.8)" :
               "inset 0 0 10px rgba(120, 53, 15, 0.6)"
           }}
         >
           {/* Rope texture lines */}
           {Array.from({ length: Math.floor((180 + ropeLength) / 20) }).map((_, i) => (
-            <div 
+            <div
               key={i}
               className="absolute left-1/2 transform -translate-x-1/2 w-6 h-0.5 bg-amber-600/30"
               style={{ top: `${i * 20 + 10}px` }}
             />
           ))}
         </motion.div>
-        
+
         {/* Enhanced Pull indicator */}
         {!hasBeenPulled && (
           <motion.div
             className="absolute -bottom-12 left-1/2 transform -translate-x-1/2 text-white text-sm sm:text-base font-bold bg-gradient-to-r from-purple-600 via-pink-500 to-purple-600 px-4 sm:px-8 py-2 sm:py-3 rounded-full shadow-2xl border border-white/20 backdrop-blur-sm whitespace-nowrap"
-            animate={{ 
+            animate={{
               opacity: [0.8, 1, 0.8],
               scale: [1, 1.05, 1],
               y: [0, -5, 0]
@@ -214,7 +214,7 @@ const Rope = ({ onPull, isPulled, isVisible }) => {
             initial={{ opacity: 0, scale: 0.8 }}
             animate={{ opacity: 1, scale: 1 }}
           >
-            {ropeLength > 180 ? "Release to reveal! 🎉" : `Keep pulling... ${Math.round((ropeLength/180) * 100)}%`}
+            {ropeLength > 180 ? "Release to reveal! 🎉" : `Keep pulling... ${Math.round((ropeLength / 180) * 100)}%`}
           </motion.div>
         )}
       </motion.div>
@@ -235,7 +235,7 @@ const QuoteCard = ({ quote, author, delay }) => (
     {/* Animated background glow */}
     <motion.div
       className="absolute inset-0 bg-gradient-to-br from-yellow-400/10 via-pink-400/10 to-purple-400/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500"
-      animate={{ 
+      animate={{
         background: [
           "linear-gradient(45deg, rgba(255,215,0,0.1), rgba(255,20,147,0.1), rgba(128,0,128,0.1))",
           "linear-gradient(45deg, rgba(255,20,147,0.1), rgba(128,0,128,0.1), rgba(255,215,0,0.1))",
@@ -244,16 +244,16 @@ const QuoteCard = ({ quote, author, delay }) => (
       }}
       transition={{ duration: 4, repeat: Infinity }}
     />
-    
+
     <div className="absolute -top-2 -left-2 sm:-top-4 sm:-left-4 text-yellow-400/40 z-0">
       <Quote size={60} className="sm:w-20 sm:h-20" />
     </div>
-    
+
     <div className="text-white/95 text-base sm:text-lg lg:text-xl italic mb-4 sm:mb-6 leading-relaxed z-10 relative">
       "{quote}"
     </div>
     <div className="text-amber-200 font-semibold text-right text-sm sm:text-base">— {author}</div>
-    
+
     {/* Decorative corner elements */}
     <div className="absolute top-4 right-4 opacity-20">
       <Sparkles className="w-4 h-4 sm:w-6 sm:h-6 text-yellow-400" />
@@ -274,7 +274,7 @@ const AppreciationCard = ({ title, message, icon: Icon, color, delay }) => (
     {/* Animated background gradient */}
     <motion.div
       className="absolute inset-0 bg-gradient-to-br from-yellow-400/5 via-pink-400/5 to-purple-400/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500"
-      animate={{ 
+      animate={{
         background: [
           "linear-gradient(135deg, rgba(255,215,0,0.05), rgba(255,20,147,0.05))",
           "linear-gradient(135deg, rgba(255,20,147,0.05), rgba(128,0,128,0.05))",
@@ -283,7 +283,7 @@ const AppreciationCard = ({ title, message, icon: Icon, color, delay }) => (
       }}
       transition={{ duration: 6, repeat: Infinity }}
     />
-    
+
     <motion.div
       className={`${color} w-16 h-16 sm:w-20 sm:h-20 lg:w-24 lg:h-24 rounded-xl sm:rounded-2xl flex items-center justify-center mb-4 sm:mb-6 mx-auto shadow-lg relative z-10`}
       whileHover={{ rotate: 360, scale: 1.1 }}
@@ -293,7 +293,7 @@ const AppreciationCard = ({ title, message, icon: Icon, color, delay }) => (
       {/* Icon glow effect */}
       <motion.div
         className="absolute inset-0 rounded-xl sm:rounded-2xl"
-        animate={{ 
+        animate={{
           boxShadow: [
             "0 0 20px rgba(255, 255, 255, 0.2)",
             "0 0 30px rgba(255, 255, 255, 0.4)",
@@ -303,7 +303,7 @@ const AppreciationCard = ({ title, message, icon: Icon, color, delay }) => (
         transition={{ duration: 2, repeat: Infinity }}
       />
     </motion.div>
-    
+
     <h3 className="text-xl sm:text-2xl lg:text-3xl font-bold text-gray-800 mb-3 sm:mb-4 text-center relative z-10">{title}</h3>
     <p className="text-gray-600 leading-relaxed text-center text-sm sm:text-base lg:text-lg relative z-10">{message}</p>
   </motion.div>
@@ -320,7 +320,7 @@ const TeacherTribute = ({ name, role, message, delay }) => (
     whileHover={{ scale: 1.02, y: -5 }}
   >
     <div className="flex items-start gap-3 sm:gap-4">
-      <motion.div 
+      <motion.div
         className="flex-shrink-0"
         whileHover={{ scale: 1.1, rotate: 5 }}
       >
@@ -391,12 +391,12 @@ function App() {
   const handleRopePull = () => {
     setIsRopePulled(true);
     setShowConfetti(true);
-    
+
     // Hide rope after 2 seconds
     setTimeout(() => {
       setHideRope(true);
     }, 2000);
-    
+
     // Stop confetti after 6 seconds
     setTimeout(() => setShowConfetti(false), 6000);
   };
@@ -457,24 +457,24 @@ function App() {
 
   const teacherTributes = [
     {
-      name: "Ms. Johnson",
-      role: "Mathematics Teacher",
-      message: "Thank you for making calculus understandable and even enjoyable! Your patience with every question never went unnoticed."
+      name: "Ms. Tarina Jayant",
+      role: "Discrete Mathematics Teacher",
+      message: "Your clear explanations and patient guidance made even the toughest concepts easy to understand. You inspired us to enjoy learning mathematics."
     },
     {
-      name: "Mr. Williams",
-      role: "Science Department",
-      message: "Your passion for chemistry was contagious. I'll never forget the excitement of our lab experiments."
+      name: "Ms. Asfiya Jaidi",
+      role: "Data Structure Teacher",
+      message: "Your enthusiasm for teaching and dedication to our growth made data structures exciting and meaningful. You shaped the way we think about coding."
     },
     {
-      name: "Dr. Garcia",
-      role: "Literature Professor",
-      message: "You opened my eyes to the beauty of poetry and taught me to appreciate words in a whole new way."
+      name: "Ms. Esha",
+      role: "Indian Knowledge System Teacher",
+      message: "You helped us connect with the richness of our culture and traditions, showing us the wisdom of Indian knowledge in a refreshing way."
     },
     {
-      name: "Coach Davis",
-      role: "Physical Education",
-      message: "You taught us that winning isn't everything, but trying our best is. Lessons I've carried into adulthood."
+      name: "Ms. Shipra",
+      role: "DLCD Teacher",
+      message: "Your encouragement and constant support taught us perseverance and discipline. You showed us that effort and consistency always lead to success."
     }
   ];
 
@@ -490,7 +490,7 @@ function App() {
       {/* Enhanced animated background */}
       <div className="absolute inset-0">
         {/* Large floating orbs */}
-        <motion.div 
+        <motion.div
           className="absolute top-10 sm:top-20 left-5 sm:left-10 w-24 sm:w-32 h-24 sm:h-32 bg-pink-400/20 rounded-full blur-xl"
           animate={{
             scale: [1, 1.3, 1],
@@ -500,7 +500,7 @@ function App() {
           }}
           transition={{ duration: 8, repeat: Infinity }}
         />
-        <motion.div 
+        <motion.div
           className="absolute top-40 sm:top-60 right-10 sm:right-20 w-36 sm:w-48 h-36 sm:h-48 bg-yellow-400/20 rounded-full blur-xl"
           animate={{
             scale: [1, 1.4, 1],
@@ -510,7 +510,7 @@ function App() {
           }}
           transition={{ duration: 10, repeat: Infinity, delay: 2 }}
         />
-        <motion.div 
+        <motion.div
           className="absolute bottom-32 sm:bottom-40 left-1/4 w-28 sm:w-40 h-28 sm:h-40 bg-green-400/20 rounded-full blur-xl"
           animate={{
             scale: [1, 1.5, 1],
@@ -520,7 +520,7 @@ function App() {
           }}
           transition={{ duration: 12, repeat: Infinity, delay: 1 }}
         />
-        <motion.div 
+        <motion.div
           className="absolute bottom-10 sm:bottom-20 right-1/4 w-32 sm:w-36 h-32 sm:h-36 bg-blue-400/20 rounded-full blur-xl"
           animate={{
             scale: [1, 1.6, 1],
@@ -556,8 +556,8 @@ function App() {
                 className="text-white"
               >
                 <motion.div
-                  animate={{ 
-                    scale: [1, 1.1, 1], 
+                  animate={{
+                    scale: [1, 1.1, 1],
                     rotate: [0, 5, -5, 0],
                     filter: [
                       "drop-shadow(0 0 20px rgba(255,215,0,0.5))",
@@ -570,17 +570,17 @@ function App() {
                 >
                   <Sparkles className="w-16 h-16 sm:w-20 sm:h-20 lg:w-24 lg:h-24 mx-auto text-yellow-400 mb-4 sm:mb-6" />
                 </motion.div>
-                
+
                 <motion.h1
                   className="text-3xl sm:text-5xl lg:text-7xl font-bold mb-4 sm:mb-6 bg-gradient-to-r from-yellow-400 via-pink-400 to-purple-400 bg-clip-text text-transparent"
-                  animate={{ 
+                  animate={{
                     backgroundPosition: ["0% 50%", "100% 50%", "0% 50%"]
                   }}
                   transition={{ duration: 5, repeat: Infinity }}
                 >
                   Happy Teachers' Day!
                 </motion.h1>
-                
+
                 <motion.p
                   className="text-lg sm:text-xl lg:text-2xl text-white/80 leading-relaxed mb-8 sm:mb-12 px-4 max-w-4xl mx-auto"
                   initial={{ opacity: 0 }}
@@ -589,7 +589,7 @@ function App() {
                 >
                   Celebrating the extraordinary educators who shape minds, inspire hearts, and build the foundation of our future.
                 </motion.p>
-                
+
                 <motion.div
                   className="flex justify-center gap-3 sm:gap-6 flex-wrap"
                   initial={{ opacity: 0, y: 20 }}
@@ -599,12 +599,12 @@ function App() {
                   {[BookOpen, GraduationCap, School, Apple].map((Icon, index) => (
                     <motion.div
                       key={index}
-                      animate={{ 
+                      animate={{
                         y: [0, -12, 0],
                         rotate: [0, 8, -8, 0],
                         scale: [1, 1.05, 1]
                       }}
-                      transition={{ 
+                      transition={{
                         duration: 3,
                         repeat: Infinity,
                         delay: index * 0.3
@@ -622,7 +622,7 @@ function App() {
                 key="celebration"
                 initial={{ opacity: 0, scale: 0.3, y: 100 }}
                 animate={{ opacity: 1, scale: 1, y: 0 }}
-                transition={{ 
+                transition={{
                   duration: 1.5,
                   type: "spring",
                   bounce: 0.5
@@ -631,18 +631,18 @@ function App() {
               >
                 <motion.h1
                   className="text-4xl sm:text-6xl lg:text-8xl xl:text-9xl font-bold mb-6 sm:mb-8 bg-gradient-to-r from-yellow-400 via-pink-400 to-purple-400 bg-clip-text text-transparent leading-tight"
-                  animate={{ 
+                  animate={{
                     scale: [1, 1.02, 1],
                     backgroundPosition: ["0% 50%", "100% 50%", "0% 50%"]
                   }}
-                  transition={{ 
+                  transition={{
                     scale: { duration: 3, repeat: Infinity },
                     backgroundPosition: { duration: 5, repeat: Infinity }
                   }}
                 >
                   Thank You, Teachers!
                 </motion.h1>
-                
+
                 <motion.div
                   initial={{ opacity: 0, y: 30 }}
                   animate={{ opacity: 1, y: 0 }}
@@ -652,7 +652,7 @@ function App() {
                   <p className="text-xl sm:text-2xl lg:text-3xl mb-6 sm:mb-8 leading-relaxed max-w-4xl mx-auto px-4">
                     Every lesson taught, every moment of guidance, and every act of kindness shapes the leaders of tomorrow.
                   </p>
-                  
+
                   <motion.div
                     className="flex justify-center gap-3 sm:gap-6 flex-wrap mb-8 sm:mb-12"
                     initial={{ opacity: 0 }}
@@ -662,12 +662,12 @@ function App() {
                     {[Gift, Heart, Star, Award, Trophy, Sparkles].map((Icon, index) => (
                       <motion.div
                         key={index}
-                        animate={{ 
+                        animate={{
                           y: [0, -15, 0],
                           rotate: [0, 12, -12, 0],
                           scale: [1, 1.1, 1]
                         }}
-                        transition={{ 
+                        transition={{
                           duration: 3,
                           repeat: Infinity,
                           delay: index * 0.2
@@ -848,7 +848,7 @@ function App() {
               {/* Animated background pattern */}
               <motion.div
                 className="absolute inset-0 opacity-10"
-                animate={{ 
+                animate={{
                   background: [
                     "radial-gradient(circle at 20% 50%, rgba(255,215,0,0.3) 0%, transparent 50%)",
                     "radial-gradient(circle at 80% 50%, rgba(255,20,147,0.3) 0%, transparent 50%)",
@@ -858,10 +858,10 @@ function App() {
                 }}
                 transition={{ duration: 8, repeat: Infinity }}
               />
-              
+
               <motion.div
-                animate={{ 
-                  rotate: [0, 5, -5, 0], 
+                animate={{
+                  rotate: [0, 5, -5, 0],
                   scale: [1, 1.1, 1],
                   filter: [
                     "drop-shadow(0 0 30px rgba(255,20,147,0.6))",
@@ -874,20 +874,20 @@ function App() {
               >
                 <Heart className="w-16 h-16 sm:w-20 sm:h-20 lg:w-24 lg:h-24 mx-auto text-red-400" fill="currentColor" />
               </motion.div>
-              
+
               <h3 className="text-2xl sm:text-3xl lg:text-4xl xl:text-5xl font-bold text-white mb-4 sm:mb-6 relative z-10">
                 Dear Teachers,
               </h3>
-              
+
               <p className="text-lg sm:text-xl lg:text-2xl xl:text-3xl text-white/95 leading-relaxed mb-6 sm:mb-8 relative z-10 px-2 sm:px-4">
-                Your impact extends far beyond the classroom. You are mentors, inspirers, and life-changers. 
+                Your impact extends far beyond the classroom. You are mentors, inspirers, and life-changers.
                 Today and every day, we celebrate you and the incredible difference you make.
               </p>
-              
+
               <motion.div
                 className="text-4xl sm:text-6xl lg:text-8xl relative z-10"
-                animate={{ 
-                  scale: [1, 1.2, 1], 
+                animate={{
+                  scale: [1, 1.2, 1],
                   rotate: [0, 10, -10, 0],
                   filter: [
                     "drop-shadow(0 0 20px rgba(255,182,193,0.8))",
@@ -909,8 +909,8 @@ function App() {
               >
                 <motion.div
                   className="inline-block bg-gradient-to-r from-yellow-400 via-pink-500 to-purple-600 text-white text-lg sm:text-xl lg:text-2xl font-bold px-6 sm:px-8 lg:px-12 py-3 sm:py-4 lg:py-5 rounded-full shadow-2xl border border-white/20"
-                  whileHover={{ 
-                    scale: 1.05, 
+                  whileHover={{
+                    scale: 1.05,
                     boxShadow: "0 20px 40px rgba(255,215,0,0.4)",
                     y: -3
                   }}
@@ -922,7 +922,7 @@ function App() {
                       "0 10px 30px rgba(255,215,0,0.3)"
                     ]
                   }}
-                  transition={{ 
+                  transition={{
                     boxShadow: { duration: 4, repeat: Infinity }
                   }}
                 >
@@ -946,7 +946,7 @@ function App() {
         >
           <motion.p
             className="text-white/70 text-base sm:text-lg px-4"
-            animate={{ 
+            animate={{
               textShadow: [
                 "0 0 10px rgba(255,255,255,0.3)",
                 "0 0 20px rgba(255,215,0,0.4)",
@@ -957,7 +957,7 @@ function App() {
           >
             Made with ❤️ for all the amazing teachers who make a difference every day
           </motion.p>
-          
+
           <motion.div
             className="flex justify-center gap-4 text-white/50"
             animate={{ opacity: [0.5, 0.8, 0.5] }}
