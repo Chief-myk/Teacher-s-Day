@@ -619,83 +619,99 @@ function App() {
               </motion.div>
             ) : (
               <motion.div
-                key="celebration"
-                initial={{ opacity: 0, scale: 0.3, y: 100 }}
-                animate={{ opacity: 1, scale: 1, y: 0 }}
-                transition={{
-                  duration: 1.5,
-                  type: "spring",
-                  bounce: 0.5
-                }}
-                className="text-center"
+                initial={{ opacity: 0, scale: 0.8 }}
+                whileInView={{ opacity: 1, scale: 1 }}
+                transition={{ duration: 1.2, type: "spring", bounce: 0.3 }}
+                viewport={{ once: true, margin: "-100px" }}
+                className="max-w-5xl mx-auto text-center"
               >
-                <motion.h1
-                  className="text-4xl sm:text-6xl lg:text-8xl xl:text-9xl font-bold mb-6 sm:mb-8 bg-gradient-to-r from-yellow-400 via-pink-400 to-purple-400 bg-clip-text text-transparent leading-tight"
-                  animate={{
-                    scale: [1, 1.02, 1],
-                    backgroundPosition: ["0% 50%", "100% 50%", "0% 50%"]
-                  }}
-                  transition={{
-                    scale: { duration: 3, repeat: Infinity },
-                    backgroundPosition: { duration: 5, repeat: Infinity }
-                  }}
-                >
-                  Thank You, Teachers!
-                </motion.h1>
+                <div className="bg-gradient-to-br from-white/20 to-white/10 backdrop-blur-xl rounded-2xl sm:rounded-3xl p-6 sm:p-8 lg:p-12 border border-white/30 relative overflow-hidden group">
+                  {/* Animated background pattern */}
+                  <motion.div
+                    className="absolute inset-0 opacity-10"
+                    animate={{
+                      background: [
+                        "radial-gradient(circle at 20% 50%, rgba(255,215,0,0.3) 0%, transparent 50%)",
+                        "radial-gradient(circle at 80% 50%, rgba(255,20,147,0.3) 0%, transparent 50%)",
+                        "radial-gradient(circle at 50% 80%, rgba(128,0,128,0.3) 0%, transparent 50%)",
+                        "radial-gradient(circle at 20% 50%, rgba(255,215,0,0.3) 0%, transparent 50%)"
+                      ]
+                    }}
+                    transition={{ duration: 8, repeat: Infinity }}
+                  />
 
-                <motion.div
-                  initial={{ opacity: 0, y: 30 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: 0.5, duration: 0.8 }}
-                  className="text-white space-y-6 sm:space-y-8"
-                >
-                  <p className="text-xl sm:text-2xl lg:text-3xl mb-6 sm:mb-8 leading-relaxed max-w-4xl mx-auto px-4">
-                    Every lesson taught, every moment of guidance, and every act of kindness shapes the leaders of tomorrow.
+                  <motion.div
+                    animate={{
+                      rotate: [0, 5, -5, 0],
+                      scale: [1, 1.1, 1],
+                      filter: [
+                        "drop-shadow(0 0 30px rgba(255,20,147,0.6))",
+                        "drop-shadow(0 0 50px rgba(255,215,0,0.8))",
+                        "drop-shadow(0 0 30px rgba(128,0,128,0.6))"
+                      ]
+                    }}
+                    transition={{ duration: 4, repeat: Infinity }}
+                    className="mb-4 sm:mb-6 relative z-10"
+                  >
+                    <Heart className="w-16 h-16 sm:w-20 sm:h-20 lg:w-24 lg:h-24 mx-auto text-red-400" fill="currentColor" />
+                  </motion.div>
+
+                  <h3 className="text-2xl sm:text-3xl lg:text-4xl xl:text-5xl font-bold text-white mb-4 sm:mb-6 relative z-10">
+                    Dear Teachers,
+                  </h3>
+
+                  <p className="text-lg sm:text-xl lg:text-2xl xl:text-3xl text-white/95 leading-relaxed mb-6 sm:mb-8 relative z-10 px-2 sm:px-4">
+                    Your impact extends far beyond the classroom. You are mentors, inspirers, and life-changers.
+                    Today and every day, we celebrate you and the incredible difference you make.
                   </p>
 
                   <motion.div
-                    className="flex justify-center gap-3 sm:gap-6 flex-wrap mb-8 sm:mb-12"
-                    initial={{ opacity: 0 }}
-                    animate={{ opacity: 1 }}
-                    transition={{ delay: 1, duration: 0.8 }}
+                    className="text-4xl sm:text-6xl lg:text-8xl relative z-10"
+                    animate={{
+                      scale: [1, 1.2, 1],
+                      rotate: [0, 10, -10, 0],
+                      filter: [
+                        "drop-shadow(0 0 20px rgba(255,182,193,0.8))",
+                        "drop-shadow(0 0 40px rgba(255,105,180,1))",
+                        "drop-shadow(0 0 20px rgba(255,182,193,0.8))"
+                      ]
+                    }}
+                    transition={{ duration: 3, repeat: Infinity }}
                   >
-                    {[Gift, Heart, Star, Award, Trophy, Sparkles].map((Icon, index) => (
-                      <motion.div
-                        key={index}
-                        animate={{
-                          y: [0, -15, 0],
-                          rotate: [0, 12, -12, 0],
-                          scale: [1, 1.1, 1]
-                        }}
-                        transition={{
-                          duration: 3,
-                          repeat: Infinity,
-                          delay: index * 0.2
-                        }}
-                        className="bg-white/20 p-3 sm:p-5 rounded-xl sm:rounded-2xl backdrop-blur-sm border border-white/30 shadow-lg"
-                        whileHover={{ scale: 1.2, rotate: 360 }}
-                      >
-                        <Icon className="w-6 h-6 sm:w-8 sm:h-8 lg:w-10 lg:h-10 text-yellow-400" />
-                      </motion.div>
-                    ))}
+                    💖
                   </motion.div>
 
                   <motion.div
-                    initial={{ opacity: 0, scale: 0.8 }}
-                    animate={{ opacity: 1, scale: 1 }}
-                    transition={{ delay: 1.5, duration: 1 }}
-                    className="inline-block bg-gradient-to-r from-yellow-400/20 via-pink-400/20 to-purple-400/20 backdrop-blur-lg rounded-full px-6 sm:px-8 py-3 sm:py-4 border border-white/30 shadow-xl"
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    transition={{ delay: 0.5, duration: 0.8 }}
+                    viewport={{ once: true }}
+                    className="mt-6 sm:mt-8 relative z-10"
                   >
-                    <span className="text-lg sm:text-xl text-white/90 font-medium">Continue scrolling to explore the celebration</span>
                     <motion.div
-                      animate={{ y: [0, 8, 0] }}
-                      transition={{ duration: 2, repeat: Infinity }}
-                      className="mt-2 text-2xl sm:text-3xl"
+                      className="inline-block bg-gradient-to-r from-yellow-400 via-pink-500 to-purple-600 text-white text-lg sm:text-xl lg:text-2xl font-bold px-6 sm:px-8 lg:px-12 py-3 sm:py-4 lg:py-5 rounded-full shadow-2xl border border-white/20"
+                      whileHover={{
+                        scale: 1.05,
+                        boxShadow: "0 20px 40px rgba(255,215,0,0.4)",
+                        y: -3
+                      }}
+                      animate={{
+                        boxShadow: [
+                          "0 10px 30px rgba(255,215,0,0.3)",
+                          "0 15px 40px rgba(255,20,147,0.4)",
+                          "0 10px 30px rgba(128,0,128,0.3)",
+                          "0 10px 30px rgba(255,215,0,0.3)"
+                        ]
+                      }}
+                      transition={{
+                        boxShadow: { duration: 4, repeat: Infinity }
+                      }}
                     >
-                      ↓
+                      <span className="hidden sm:inline">🌟 Thank You for Everything! 🌟</span>
+                      <span className="sm:hidden">🌟 Thank You! 🌟</span>
                     </motion.div>
                   </motion.div>
-                </motion.div>
+                </div>
               </motion.div>
             )}
           </AnimatePresence>
@@ -836,101 +852,87 @@ function App() {
 
       {/* Interactive Thank You Section */}
       {isRopePulled && (
-        <section className="relative z-10 py-12 sm:py-20 px-4 sm:px-6 lg:px-8 bg-gradient-to-r from-purple-900/50 via-pink-900/50 to-purple-900/50 backdrop-blur-sm">
+        <section className="relative z-10 py-12 sm:py-20 px-4 sm:px-6 lg:px-8 backdrop-blur-sm">
+        {/* <section className="relative z-10 py-12 sm:py-20 px-4 sm:px-6 lg:px-8 bg-gradient-to-r from-purple-900/50 via-pink-900/50 to-purple-900/50 backdrop-blur-sm"> */}
+
           <motion.div
-            initial={{ opacity: 0, scale: 0.8 }}
-            whileInView={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 1.2, type: "spring", bounce: 0.3 }}
-            viewport={{ once: true, margin: "-100px" }}
-            className="max-w-5xl mx-auto text-center"
+            key="celebration"
+            initial={{ opacity: 0, scale: 0.3, y: 100 }}
+            animate={{ opacity: 1, scale: 1, y: 0 }}
+            transition={{
+              duration: 1.5,
+              type: "spring",
+              bounce: 0.5
+            }}
+            className="text-center"
           >
-            <div className="bg-gradient-to-br from-white/20 to-white/10 backdrop-blur-xl rounded-2xl sm:rounded-3xl p-6 sm:p-8 lg:p-12 border border-white/30 relative overflow-hidden group">
-              {/* Animated background pattern */}
-              <motion.div
-                className="absolute inset-0 opacity-10"
-                animate={{
-                  background: [
-                    "radial-gradient(circle at 20% 50%, rgba(255,215,0,0.3) 0%, transparent 50%)",
-                    "radial-gradient(circle at 80% 50%, rgba(255,20,147,0.3) 0%, transparent 50%)",
-                    "radial-gradient(circle at 50% 80%, rgba(128,0,128,0.3) 0%, transparent 50%)",
-                    "radial-gradient(circle at 20% 50%, rgba(255,215,0,0.3) 0%, transparent 50%)"
-                  ]
-                }}
-                transition={{ duration: 8, repeat: Infinity }}
-              />
+            <motion.h1
+              className="text-4xl sm:text-6xl lg:text-8xl xl:text-9xl font-bold mb-6 sm:mb-8 bg-gradient-to-r from-yellow-400 via-pink-400 to-purple-400 bg-clip-text text-transparent leading-tight"
+              animate={{
+                scale: [1, 1.02, 1],
+                backgroundPosition: ["0% 50%", "100% 50%", "0% 50%"]
+              }}
+              transition={{
+                scale: { duration: 3, repeat: Infinity },
+                backgroundPosition: { duration: 5, repeat: Infinity }
+              }}
+            >
+              Thank You, Teachers!
+            </motion.h1>
 
-              <motion.div
-                animate={{
-                  rotate: [0, 5, -5, 0],
-                  scale: [1, 1.1, 1],
-                  filter: [
-                    "drop-shadow(0 0 30px rgba(255,20,147,0.6))",
-                    "drop-shadow(0 0 50px rgba(255,215,0,0.8))",
-                    "drop-shadow(0 0 30px rgba(128,0,128,0.6))"
-                  ]
-                }}
-                transition={{ duration: 4, repeat: Infinity }}
-                className="mb-4 sm:mb-6 relative z-10"
-              >
-                <Heart className="w-16 h-16 sm:w-20 sm:h-20 lg:w-24 lg:h-24 mx-auto text-red-400" fill="currentColor" />
-              </motion.div>
-
-              <h3 className="text-2xl sm:text-3xl lg:text-4xl xl:text-5xl font-bold text-white mb-4 sm:mb-6 relative z-10">
-                Dear Teachers,
-              </h3>
-
-              <p className="text-lg sm:text-xl lg:text-2xl xl:text-3xl text-white/95 leading-relaxed mb-6 sm:mb-8 relative z-10 px-2 sm:px-4">
-                Your impact extends far beyond the classroom. You are mentors, inspirers, and life-changers.
-                Today and every day, we celebrate you and the incredible difference you make.
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.5, duration: 0.8 }}
+              className="text-white space-y-6 sm:space-y-8"
+            >
+              <p className="text-xl sm:text-2xl lg:text-3xl mb-6 sm:mb-8 leading-relaxed max-w-4xl mx-auto px-4">
+                Every lesson taught, every moment of guidance, and every act of kindness shapes the leaders of tomorrow.
               </p>
 
               <motion.div
-                className="text-4xl sm:text-6xl lg:text-8xl relative z-10"
-                animate={{
-                  scale: [1, 1.2, 1],
-                  rotate: [0, 10, -10, 0],
-                  filter: [
-                    "drop-shadow(0 0 20px rgba(255,182,193,0.8))",
-                    "drop-shadow(0 0 40px rgba(255,105,180,1))",
-                    "drop-shadow(0 0 20px rgba(255,182,193,0.8))"
-                  ]
-                }}
-                transition={{ duration: 3, repeat: Infinity }}
+                className="flex justify-center gap-3 sm:gap-6 flex-wrap mb-8 sm:mb-12"
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ delay: 1, duration: 0.8 }}
               >
-                💖
+                {[Gift, Heart, Star, Award, Trophy, Sparkles].map((Icon, index) => (
+                  <motion.div
+                    key={index}
+                    animate={{
+                      y: [0, -15, 0],
+                      rotate: [0, 12, -12, 0],
+                      scale: [1, 1.1, 1]
+                    }}
+                    transition={{
+                      duration: 3,
+                      repeat: Infinity,
+                      delay: index * 0.2
+                    }}
+                    className="bg-white/20 p-3 sm:p-5 rounded-xl sm:rounded-2xl backdrop-blur-sm border border-white/30 shadow-lg"
+                    whileHover={{ scale: 1.2, rotate: 360 }}
+                  >
+                    <Icon className="w-6 h-6 sm:w-8 sm:h-8 lg:w-10 lg:h-10 text-yellow-400" />
+                  </motion.div>
+                ))}
               </motion.div>
 
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.5, duration: 0.8 }}
-                viewport={{ once: true }}
-                className="mt-6 sm:mt-8 relative z-10"
+              {/* <motion.div
+                initial={{ opacity: 0, scale: 0.8 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ delay: 1.5, duration: 1 }}
+                className="inline-block bg-gradient-to-r from-yellow-400/20 via-pink-400/20 to-purple-400/20 backdrop-blur-lg rounded-full px-6 sm:px-8 py-3 sm:py-4 border border-white/30 shadow-xl"
               >
+                <span className="text-lg sm:text-xl text-white/90 font-medium">Continue scrolling to explore the celebration</span>
                 <motion.div
-                  className="inline-block bg-gradient-to-r from-yellow-400 via-pink-500 to-purple-600 text-white text-lg sm:text-xl lg:text-2xl font-bold px-6 sm:px-8 lg:px-12 py-3 sm:py-4 lg:py-5 rounded-full shadow-2xl border border-white/20"
-                  whileHover={{
-                    scale: 1.05,
-                    boxShadow: "0 20px 40px rgba(255,215,0,0.4)",
-                    y: -3
-                  }}
-                  animate={{
-                    boxShadow: [
-                      "0 10px 30px rgba(255,215,0,0.3)",
-                      "0 15px 40px rgba(255,20,147,0.4)",
-                      "0 10px 30px rgba(128,0,128,0.3)",
-                      "0 10px 30px rgba(255,215,0,0.3)"
-                    ]
-                  }}
-                  transition={{
-                    boxShadow: { duration: 4, repeat: Infinity }
-                  }}
+                  animate={{ y: [0, 8, 0] }}
+                  transition={{ duration: 2, repeat: Infinity }}
+                  className="mt-2 text-2xl sm:text-3xl"
                 >
-                  <span className="hidden sm:inline">🌟 Thank You for Everything! 🌟</span>
-                  <span className="sm:hidden">🌟 Thank You! 🌟</span>
+                  ↓
                 </motion.div>
-              </motion.div>
-            </div>
+              </motion.div> */}
+            </motion.div>
           </motion.div>
         </section>
       )}
@@ -974,3 +976,5 @@ function App() {
 }
 
 export default App;
+
+
