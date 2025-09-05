@@ -819,7 +819,7 @@ function App() {
       )}
 
       {/* Teacher Tributes Section */}
-      {isRopePulled && (
+      {/* {isRopePulled && (
         <section className="relative z-10 py-12 sm:py-20 px-4 sm:px-6 lg:px-8">
           <div className="max-w-6xl mx-auto">
             <motion.div
@@ -848,7 +848,7 @@ function App() {
             </div>
           </div>
         </section>
-      )}
+      )} */}
 
       {/* Interactive Thank You Section */}
       {isRopePulled && (
