@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useMemo } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import {
   Heart, Star, Sparkles, Gift, BookOpen, Award,
@@ -8,7 +8,7 @@ import {
 
 // Enhanced Confetti component with better effects
 const Confetti = ({ isActive }) => {
-  const particles = Array.from({ length: 150 }, (_, i) => i);
+const particles = useMemo(() => Array.from({ length: 100 }, (_, i) => i), []);
 
   return (
     <AnimatePresence>
@@ -64,7 +64,7 @@ const Confetti = ({ isActive }) => {
 
 // Enhanced Floating Elements with more variety
 const FloatingElements = () => {
-  const elements = Array.from({ length: 20 }, (_, i) => i);
+  const elements = useMemo(() => Array.from({ length: 16 }, (_, i) => i), []);
   const iconComponents = [Heart, Star, BookOpen, GraduationCap, Apple, Trophy, Palette, Music];
   const colors = ['text-pink-300', 'text-yellow-300', 'text-blue-300', 'text-purple-300', 'text-green-300', 'text-red-300'];
 
